@@ -9,10 +9,13 @@ export default class Hero extends Component {
             "img-url": getHeroImageUrl(this.props.name)
         };
     }
-    
+
     render() {
         return (
-            <img src={this.state["img-url"]}/>
+            <div className='hero-card'>
+                <img src={this.state["img-url"]}/>
+                <div>{this.props.name}</div>
+            </div>
         );
     }
 

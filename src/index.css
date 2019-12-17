@@ -1,13 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Big Noodle Titling';
+  src: url(fonts/big_noodle_titling.ttf) format('truetype');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'Big Noodle Titling Oblique';
+  src: url(fonts/big_noodle_titling_oblique.ttf) format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Big Noodle Titling Oblique';
+  font-size: 2em;
+  text-align: center;
+}
+
+.hero-card {
+  text-align: center;
+  margin: 15px;
+  border: solid #222;
+  padding: 12px;
+}
+
+.hero-gallery {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }

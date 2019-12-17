@@ -19,7 +19,7 @@ export default class HeroGallery extends Component {
 
     render() {
         return (
-            <div>
+            <div class='hero-gallery'>
                 {this.state.heroes.map((name, index) => {
                     return <Hero name={name} key={index}/>
                 })}

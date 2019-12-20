@@ -17,19 +17,71 @@ body {
   font-family: 'Big Noodle Titling Oblique';
   font-size: 2em;
   text-align: center;
+  background: #43484c;
 }
 
 .hero-card {
   text-align: center;
   margin: 15px;
-  border: solid #222;
+  border-radius: 8px;
   padding: 12px;
+  position: relative;
+  background: #405275;
+  color: #F2F2F2;
+}
+
+.hero-card img {
+  width: 80%;
+}
+
+.hero-card:hover {
+  cursor: pointer;
 }
 
 .hero-gallery {
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.role-icon {
+  max-width: 25%;
+  position: absolute;
+  left: 0;
+  top: 0px;
+}
+
+.roles {
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+  color: #FA9C1D;
+}
+
+.role .text {
+  margin-left: 8px;
+}
+
+.role:hover {
+  cursor: pointer;
+}
+
+.role:hover .icon {
+  fill: #218ffe;
+}
+
+.role:hover .text {
+  color: #218ffe;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  fill: #FA9C1D;
+  stroke: black;
+  stroke-width: 0;
 }

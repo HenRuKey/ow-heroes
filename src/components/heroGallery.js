@@ -1,25 +1,32 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import Hero from './hero';
-import {getAllHeroes} from '../lib/heroData';
+import { getAllHeroes, Roles } from '../lib/heroData';
+import { useTransition, animated } from 'react-spring';
 
-export default class HeroGallery extends Component {
+const HeroGallery = () => {
+    const heroes = getAllHeroes();
+    const tanks = heroes.filter(hero => hero.role === Roles.TANK);
+    const damage = heroes.filter(hero => hero.role === Roles.DAMAGE);
+    const support = heroes.filter(hero => hero.role === Roles.SUPPORT);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      heroes: []
-    };
-  }
+    const [activeHeroes, setActiveHeroes] = useState(heroes);
+    
 
-  componentDidMount() {
-    this.setState({heroes: getAllHeroes()});
-  }
-
-  render() {
     return ( 
-    <> 
+        <> 
         <div className="roles">
-            <a className="role">
+            <a 
+                className="role" 
+                onClick={() => {
+                    setActiveHeroes(heroes);
+                }}>
+                <span className="text">All</span>
+            </a>
+            <a 
+                className="role" 
+                onClick={() => {
+                    setActiveHeroes(tanks)
+                }}>
                 {/* Icons taken from https://playoverwatch.com/en-us/heroes/ */}
                 <svg className="icon" viewBox="0 0 32 32" role="presentation">
                     <title>Tank</title>
@@ -31,7 +38,11 @@ export default class HeroGallery extends Component {
                 </svg>
                 <span className="text">Tank</span>
             </a>
-            <a className="role">
+            <a 
+                className="role" 
+                onClick={() => {
+                    setActiveHeroes(damage)
+                }}>
                 <svg className="icon" viewBox="0 0 32 32" role="presentation">
                     <title>Damage</title>
                     <g>
@@ -52,7 +63,11 @@ export default class HeroGallery extends Component {
                 </svg>
                 <span className="text">Damage</span>
             </a>
-            <a className="role">
+            <a 
+                className="role" 
+                onClick={() => {
+                    setActiveHeroes(support)
+                }}>
                 <svg className="icon" viewBox="0 0 32 32" role="presentation">
                     <title>Support</title>
                     <path
@@ -65,17 +80,25 @@ export default class HeroGallery extends Component {
                 <span className="text">Support</span>
             </a>
         </div> 
-        < div className = 'hero-gallery' > {
-            this.state.heroes.map((hero, index) => {
-                return (
-                    <Hero
-                        name={hero.name}
-                        portrait={hero.portrait}
-                        roleIcon={hero.roleIcon}
-                        key={index}/>
-                )})}
-        </div>        
-    </>)
-  }
+        <div className = 'hero-gallery'>
+            {
+                heroes.map((hero, index) => {
+                    return (
+                        <HeroCard
+                            name={hero.name}
+                            portrait={hero.portrait}
+                            roleIcon={hero.roleIcon}
+                            isActive={activeHeroes.includes(hero)}
+                            key={index}
+                        />
+                    )
+                })
+            }
+        </div>
+        </>
+    );
+};
 
-}
+const HeroCard = animated(Hero);
+
+export default HeroGallery;

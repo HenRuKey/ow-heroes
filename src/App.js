@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import HeroGallery from './components/heroGallery';
-import { createHeroJSON } from './lib/heroData';
 import logo from './logo.svg';
 import './App.css';
 

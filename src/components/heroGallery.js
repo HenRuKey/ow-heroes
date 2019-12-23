@@ -14,18 +14,6 @@ const HeroGallery = () => {
     const [isDetailsOpen, setDetailsOpen] = useState(false);
     const [focusedHero, setFocusedHero] = useState();
 
-    const heroDetailsWindow = useTransition(isDetailsOpen, null, {
-        from: {
-
-        },
-        enter: {
-
-        },
-        leave: {
-
-        }
-    });
-
     const heroClickHandler = (heroName) => {
         let hero = heroes.filter(hero => hero.name === heroName)[0];
         setFocusedHero(hero);
@@ -121,14 +109,13 @@ const HeroGallery = () => {
                 })
             }
         </div>
+
         {
-            heroDetailsWindow.map(({item, key, props:styling}) => 
-                item && focusedHero &&
-                <HeroDetails
-                    onClose={detailsClosedHandler}
-                    hero={focusedHero}
-                />
-            )
+            isDetailsOpen && focusedHero &&
+            <HeroDetails
+                onClose={detailsClosedHandler}
+                hero={focusedHero}
+            />
         }
         </>
     );

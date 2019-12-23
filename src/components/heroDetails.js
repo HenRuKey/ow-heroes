@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export default class HeroDetails extends Component {
+const HeroDetails = (props) => {
 
-    constructor(props) {
-        
-    }
+    return (
+        <div className='dark-overlay'>
+            <div className='hero-details'>
+                <div className='close-button'>
+                    <svg width='100' height='100' onClick={props.onClose}>
+                        <circle cx='50' cy='50' r='10' fill='red'/>
+                    </svg>
+                </div>
+                <h1>{props.hero.name}</h1>
+            </div>
+        </div>
+    );
 
-    render() {
-        return (
-            <div>Hero Details</div>
-        );
-    }
+};
 
-}
+export default HeroDetails;

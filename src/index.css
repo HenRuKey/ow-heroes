@@ -90,3 +90,35 @@ body {
   stroke: black;
   stroke-width: 0;
 }
+
+.dark-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 12;
+}
+
+.hero-details {
+  position: absolute;
+  width: 80%;
+  background: #405275;
+  text-align: center;
+  border: solid black;  
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.close-button {
+  top: -50px;
+  left: -50px;
+  position: absolute;
+}
+
+.close-button svg:hover {
+  cursor: pointer;
+}

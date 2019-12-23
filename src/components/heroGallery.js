@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Hero from './hero';
+import HeroDetails from './heroDetails';
 import { getAllHeroes, Roles } from '../lib/heroData';
 import { useTransition, animated } from 'react-spring';
 
@@ -10,7 +11,31 @@ const HeroGallery = () => {
     const support = heroes.filter(hero => hero.role === Roles.SUPPORT);
 
     const [activeHeroes, setActiveHeroes] = useState(heroes);
-    
+    const [isDetailsOpen, setDetailsOpen] = useState(false);
+    const [focusedHero, setFocusedHero] = useState();
+
+    const heroDetailsWindow = useTransition(isDetailsOpen, null, {
+        from: {
+
+        },
+        enter: {
+
+        },
+        leave: {
+
+        }
+    });
+
+    const heroClickHandler = (heroName) => {
+        let hero = heroes.filter(hero => hero.name === heroName)[0];
+        setFocusedHero(hero);
+        setDetailsOpen(true);
+    };
+
+    const detailsClosedHandler = () => {
+        setDetailsOpen(false);
+        setFocusedHero(null);
+    };
 
     return ( 
         <> 
@@ -89,12 +114,22 @@ const HeroGallery = () => {
                             portrait={hero.portrait}
                             roleIcon={hero.roleIcon}
                             isActive={activeHeroes.includes(hero)}
+                            onClick={heroClickHandler}
                             key={index}
                         />
                     )
                 })
             }
         </div>
+        {
+            heroDetailsWindow.map(({item, key, props:styling}) => 
+                item && focusedHero &&
+                <HeroDetails
+                    onClose={detailsClosedHandler}
+                    hero={focusedHero}
+                />
+            )
+        }
         </>
     );
 };

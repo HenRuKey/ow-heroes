@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { useSpring, useTransition, animated } from 'react-spring';
 
 const Hero = (props) => {
@@ -31,7 +31,8 @@ const Hero = (props) => {
                 className='hero-card' 
                 style={{...swipe, ...styling}}
                 onMouseOver={() => setFocus(true)} 
-                onMouseOut={() => setFocus(false)}>
+                onMouseOut={() => setFocus(false)}
+                onClick={() => props.onClick(props.name)}>
                 <img src={props.portrait}/>
                 <div>{props.name}</div>
                 <img className='role-icon' src={props.roleIcon}/>
